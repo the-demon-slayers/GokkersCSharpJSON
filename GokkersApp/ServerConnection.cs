@@ -25,8 +25,8 @@ namespace GokkersApp
        
         public void svLoginEncrypted()
         {
-            
-                connectionString = File.ReadAllText("c.gok");
+                string parent = System.IO.Directory.GetParent("..").FullName;
+                connectionString = File.ReadAllText(parent +"/gokResources/c.gok");
                 string decode = Encoding.UTF8.GetString(Convert.FromBase64String(connectionString));
                 connectionString = decode;
                 connection = new MySqlConnection(connectionString);

@@ -36,7 +36,9 @@ namespace GokkersApp
             {
                 downloadFromDatabase();
             }
-            LoadDatabase("gamedatax.gok");
+            string parent = System.IO.Directory.GetParent("..").FullName;
+            string dir = parent +"/gokResources/gamedatax.gok";
+            LoadDatabase(dir);
             loadGame();
             updateWinLabels();
           
@@ -69,7 +71,8 @@ namespace GokkersApp
             MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
             DataTable dt = new DataTable();
             sda.Fill(dt);
-            StreamWriter save = File.CreateText("gamedatax.gok");
+            string parent = System.IO.Directory.GetParent("..").FullName;
+            StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, dt);
             save.Close();
@@ -83,8 +86,8 @@ namespace GokkersApp
             saveData.wins = wins;
             saveData.losses = losses;
             saveData.points = points;
-           
-            StreamWriter save = File.CreateText(UserSave+"gamedata.gok");
+            string parent = System.IO.Directory.GetParent("..").FullName;
+            StreamWriter save = File.CreateText(parent +"/gokResources/" +UserSave+"gamedata.gok");
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, saveData);
             save.Close();
@@ -95,7 +98,8 @@ namespace GokkersApp
             bool fileFound = false;
             try
             {
-                using (File.Open("gamedata.gok", FileMode.Open))
+                string parent = System.IO.Directory.GetParent("..").FullName;
+                using (File.Open(parent+"/gokResources/gamedata.gok", FileMode.Open))
                 {
                     fileFound = true;
                     
@@ -109,7 +113,8 @@ namespace GokkersApp
             }
             if(fileFound)
             {
-                StreamReader sr = File.OpenText("gamedata.gok");
+                string parent = System.IO.Directory.GetParent("..").FullName;
+                StreamReader sr = File.OpenText(parent+"/gokResources/gamedata.gok");
 
 
                 JsonSerializer serializer = new JsonSerializer();
