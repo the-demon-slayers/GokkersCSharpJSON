@@ -31,6 +31,7 @@ namespace GokkersApp
         public mainForm()
         {
             InitializeComponent();
+           
             establishConnection();
             if (connected)
             {

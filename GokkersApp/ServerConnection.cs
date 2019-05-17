@@ -9,6 +9,7 @@ using System.IO;
 using System.Windows.Forms;
 using MySql.Data.Common;
 using MySql.Data.MySqlClient;
+using EncryptorDecryptor;
 namespace GokkersApp
 {
     public class ServerConnection
@@ -22,13 +23,17 @@ namespace GokkersApp
         private string connectionString;
         public string sslM;
         public string activeUserName;
-       
+        
         public void svLoginEncrypted()
         {
                 string parent = System.IO.Directory.GetParent("..").FullName;
-                connectionString = File.ReadAllText(parent +"/gokResources/c.gok");
-                string decode = Encoding.UTF8.GetString(Convert.FromBase64String(connectionString));
+                
+                string dir = File.ReadAllText(parent + "/gokResources/c.gok");
+
+              
+                string decode = AesEncryptor.Decrypt(dir);
                 connectionString = decode;
+                
                 connection = new MySqlConnection(connectionString);
         }
         public void svLogin(string svName, string dbName, string userID, string pass, string port, string ssl)

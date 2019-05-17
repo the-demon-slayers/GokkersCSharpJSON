@@ -568,7 +568,7 @@
     <value>136, 0</value>
   </data>
   <data name="userNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 54</value>
+    <value>191, 54</value>
   </data>
   <data name="userNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
