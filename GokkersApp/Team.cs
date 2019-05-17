@@ -14,7 +14,7 @@ namespace GokkersApp
         public Team(string name, bool protec)
         {
             this.teamName = name;
-            this.protectedTeam = protec;
+           
         }
         public void addPlayer(Player playerToAdd)
         {
