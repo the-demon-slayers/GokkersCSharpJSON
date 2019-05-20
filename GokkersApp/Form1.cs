@@ -27,20 +27,24 @@ namespace GokkersApp
         public int wins, losses, points;
         public bool connected = false;
         public bool canProceed = false;
+        public bool cheat = false;
         SaveData saveData = new SaveData();
         ServerConnection serverConnection;
         public mainForm()
         {
             InitializeComponent();
-           
+            //Connect to the network...
             establishConnection();
             if (connected)
             {
                 downloadFromDatabase();
             }
+            //Load the database that was downloaded from the network.
             string parent = System.IO.Directory.GetParent("..").FullName;
             string dir = parent +"/gokResources/gamedatax.gok";
             LoadDatabase(dir);
+            ///
+            ///Check for userdata before and load it.
             if (canProceed)
             {
                 loadGame(saveData.user_name);
@@ -50,9 +54,12 @@ namespace GokkersApp
                 OpenUserData();
              
             }
+            ///
+            ///Update labels.
             updateWinLabels();
           
         }
+
         void OpenUserData()
         {
             UserSelector userSelector = new UserSelector();
@@ -74,11 +81,13 @@ namespace GokkersApp
         {
             this.Text = newText;
         }
+
         void establishConnection ()
         {
             serverConnection = new ServerConnection();
             try
             {
+                //Get the decrypted string and then log in to the database.
                 serverConnection.svLoginEncrypted();
                 serverConnection.connection.Open();
               
@@ -92,6 +101,7 @@ namespace GokkersApp
                 
             }
         }
+        //Download the teams database to a json file.
         void downloadFromDatabase()
         {
             string commandString = "SELECT * FROM teams";
@@ -120,6 +130,14 @@ namespace GokkersApp
             save.Close();
 
         }
+        //Set the default values for the score and points if no user is found.
+        void setDefaults()
+        {
+            wins = 0;
+            losses = 0;
+            points = 32;
+        }
+        //Load game using the proper user string
         void loadGame(string UserSave)
         {
             bool fileFound = false;
@@ -136,8 +154,9 @@ namespace GokkersApp
             catch (FileNotFoundException ex)
             {
                 fileFound = false;
-                points = 5;
+                
             }
+
             if(fileFound)
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
@@ -154,10 +173,8 @@ namespace GokkersApp
             }
             else
             {
-                //MessageBox.Show("Geen SaveGame getecteerd.");
-                wins = 0;
-                losses = 0;
-                points = 32;
+                setDefaults();
+               
             }
             updateWinLabels();
         }
@@ -265,6 +282,18 @@ namespace GokkersApp
             OpenUserData();
         }
 
+        private void betButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.C)
+            {
+                cheat = true;
+            }
+            else
+            {
+                cheat = false;
+            }
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -272,6 +301,11 @@ namespace GokkersApp
 
         private void betButton_Click(object sender, EventArgs e)
         {
+            if(cheat)
+            {
+                points += 64;
+                cheat = false;
+            }
             PerformRNG();
             updateWinLabels();
         }

@@ -111,6 +111,7 @@
             this.betButton.Name = "betButton";
             this.betButton.UseVisualStyleBackColor = true;
             this.betButton.Click += new System.EventHandler(this.betButton_Click);
+            this.betButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.betButton_KeyDown);
             // 
             // lossLabel
             // 
