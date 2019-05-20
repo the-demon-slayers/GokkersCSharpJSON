@@ -164,6 +164,7 @@
             resources.ApplyResources(this.changeUserButton, "changeUserButton");
             this.changeUserButton.Name = "changeUserButton";
             this.changeUserButton.UseVisualStyleBackColor = true;
+            this.changeUserButton.Click += new System.EventHandler(this.changeUserButton_Click);
             // 
             // mainForm
             // 

@@ -26,6 +26,7 @@ namespace GokkersApp
         public List<string> Teams = new List<string>();
         public int wins, losses, points;
         public bool connected = false;
+        public bool canProceed = false;
         SaveData saveData = new SaveData();
         ServerConnection serverConnection;
         public mainForm()
@@ -40,9 +41,34 @@ namespace GokkersApp
             string parent = System.IO.Directory.GetParent("..").FullName;
             string dir = parent +"/gokResources/gamedatax.gok";
             LoadDatabase(dir);
-            loadGame();
+            if (canProceed)
+            {
+                loadGame(saveData.user_name);
+            }
+            else
+            {
+                OpenUserData();
+             
+            }
             updateWinLabels();
           
+        }
+        void OpenUserData()
+        {
+            UserSelector userSelector = new UserSelector();
+            userSelector.ShowDialog();
+            if(userSelector.DialogResult != DialogResult.OK)
+            {
+                canProceed = true;
+                userNameLabel.Text = userSelector.SelectedUser;
+                saveData.user_name = userSelector.SelectedUser;
+                loadGame(userSelector.SelectedUser);
+
+            }
+            else
+            {
+                canProceed = false;
+            }
         }
         void RefreshTitleBar(string newText)
         {
@@ -88,19 +114,19 @@ namespace GokkersApp
             saveData.losses = losses;
             saveData.points = points;
             string parent = System.IO.Directory.GetParent("..").FullName;
-            StreamWriter save = File.CreateText(parent +"/gokResources/" +UserSave+"gamedata.gok");
+            StreamWriter save = File.CreateText(parent +"/gokResources/savedata/" +UserSave+".gok");
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, saveData);
             save.Close();
 
         }
-        void loadGame()
+        void loadGame(string UserSave)
         {
             bool fileFound = false;
             try
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
-                using (File.Open(parent+"/gokResources/gamedata.gok", FileMode.Open))
+                using (File.Open(parent+"/gokResources/savedata/" +UserSave+".gok", FileMode.Open))
                 {
                     fileFound = true;
                     
@@ -115,7 +141,7 @@ namespace GokkersApp
             if(fileFound)
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
-                StreamReader sr = File.OpenText(parent+"/gokResources/gamedata.gok");
+                StreamReader sr = File.OpenText(parent+"/gokResources/savedata/"+UserSave+".gok");
 
 
                 JsonSerializer serializer = new JsonSerializer();
@@ -128,7 +154,10 @@ namespace GokkersApp
             }
             else
             {
-                MessageBox.Show("Geen SaveGame getecteerd.");
+                //MessageBox.Show("Geen SaveGame getecteerd.");
+                wins = 0;
+                losses = 0;
+                points = 32;
             }
             updateWinLabels();
         }
@@ -229,6 +258,11 @@ namespace GokkersApp
                 downloadFromDatabase();
             }
             LoadDatabase("gamedatax.gok");
+        }
+
+        private void changeUserButton_Click(object sender, EventArgs e)
+        {
+            OpenUserData();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
