@@ -104,14 +104,18 @@ namespace GokkersApp
         //Download the teams database to a json file.
         void downloadFromDatabase()
         {
+            //Select the teams database
             string commandString = "SELECT * FROM teams";
             MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
             DataTable dt = new DataTable();
             sda.Fill(dt);
+            //SDA takes data from the selected database and fills up our datatable with information.
             string parent = System.IO.Directory.GetParent("..").FullName;
             StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
+
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, dt);
+            //We simply save the datatable as a json file and we're good to go.
             save.Close();
             MessageBox.Show("Database is succesvol vernieuwed");
 
@@ -156,7 +160,7 @@ namespace GokkersApp
                 fileFound = false;
                 
             }
-
+            //If the test file was found, then load the actual file. This is done to prevent exceptions.
             if(fileFound)
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
@@ -173,6 +177,7 @@ namespace GokkersApp
             }
             else
             {
+                //Set everything to a defualt value
                 setDefaults();
                
             }
@@ -180,7 +185,7 @@ namespace GokkersApp
         }
         void LoadDatabase(string dbName)
         {
-            
+            //Basically copies the entire database from the file and fills the class with its contents.
             rootObject = new RootObject();
             StreamReader sr = File.OpenText(dbName);
             
@@ -193,6 +198,7 @@ namespace GokkersApp
             teamPickerComboBox.Items.Clear();
             TeamsBase.Clear();
             Teams.Clear();
+            //Fill tables with the loaded database.
             for (int i = 0; i < teams.Count; i++)
             {
 
@@ -211,12 +217,10 @@ namespace GokkersApp
 
             }
             sr.Close();
-            
-            
-         
-          
+                 
             playerListView.Refresh();
         }
+        //This RNG betting function may or may not be removed so it's contents aren't important at the moment.
         void PerformRNG()
         {
             int x = 0;
@@ -281,7 +285,7 @@ namespace GokkersApp
         {
             OpenUserData();
         }
-
+        //EXTREMELY BASIC CHEAT CODE...
         private void betButton_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.C)
