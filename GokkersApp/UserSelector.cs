@@ -60,8 +60,20 @@ namespace GokkersApp
 
         private void makeNewUserButton_Click(object sender, EventArgs e)
         {
-            SelectedUser = "Gokker1";
-            this.Close();
+            if(string.IsNullOrEmpty(newUserTextBox.Text))
+            {
+                if(newUserTextBox.Text.Contains(".") || newUserTextBox.Text.Contains("[") || newUserTextBox.Text.Contains("]") || newUserTextBox.Text.Contains("/") || newUserTextBox.Text.Contains("\""))
+                {
+                    MessageBox.Show("A.U.B typ niks verkeerd.");
+                }
+            }
+            else
+            {
+                SelectedUser = newUserTextBox.Text;
+                this.Close();
+            }
+            
+           
         }
     }
 }
