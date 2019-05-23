@@ -10,8 +10,8 @@ namespace EncryptorDecryptor
     class AesEncryptor
     {
         
-        public static string IV = "M8SzvBVteoiru2Bd";//16 char 128bits
-        public static string Key = "bV9yJ8R4mh5ujbUCk8qLjeQky9s3Xgmk"; //32 char 256bits
+        static string IV = "M8SzvBVteoiru2Bd";//16 char 128bits
+        static string Key = "bV9yJ8R4mh5ujbUCk8qLjeQky9s3Xgmk"; //32 char 256bits
         public static string Encrypt(string unencrypted)
         {
             

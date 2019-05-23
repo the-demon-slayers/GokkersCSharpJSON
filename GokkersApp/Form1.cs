@@ -24,6 +24,7 @@ namespace GokkersApp
         public List<Player> Players = new List<Player>();
         public List<TeamBase> TeamsBase= new List<TeamBase>();
         public List<string> Teams = new List<string>();
+
         public int wins, losses, points;
         public bool connected = false;
         public bool canProceed = false;
@@ -112,6 +113,25 @@ namespace GokkersApp
             //SDA takes data from the selected database and fills up our datatable with information.
             string parent = System.IO.Directory.GetParent("..").FullName;
             StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
+
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(save, dt);
+            //We simply save the datatable as a json file and we're good to go.
+            save.Close();
+            MessageBox.Show("Database is succesvol vernieuwed");
+
+        }
+        //Download the competitions database to a json file.
+        void downloadFromCompetitionDatabase()
+        {
+            //Select the teams database
+            string commandString = "SELECT * FROM games";
+            MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            //SDA takes data from the selected database and fills up our datatable with information.
+            string parent = System.IO.Directory.GetParent("..").FullName;
+            StreamWriter save = File.CreateText(parent + "/gokResources/gamedataxcomp.gok");
 
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, dt);
