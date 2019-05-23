@@ -172,16 +172,21 @@ namespace GokkersApp
             try
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
-                using (File.Open(parent+"/gokResources/savedata/" +UserSave+".gok", FileMode.Open))
+                using (File.Open(parent + "/gokResources/savedata/" + UserSave + ".gok", FileMode.Open))
                 {
                     fileFound = true;
-                    
-                  
+
+
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (Exception x)
             {
-                fileFound = false;
+                if (x is FileNotFoundException || x is PathTooLongException)
+                {
+
+
+                    fileFound = false;
+                }
                 
             }
             //If the test file was found, then load the actual file. This is done to prevent exceptions.
