@@ -23,6 +23,7 @@ namespace GokkersApp
         RootObject rootObject;
         public List<Player> Players = new List<Player>();
         public List<TeamBase> TeamsBase= new List<TeamBase>();
+        public DataGridView gridView;
         public List<string> Teams = new List<string>();
 
         public int wins, losses, points;
@@ -39,11 +40,14 @@ namespace GokkersApp
             if (connected)
             {
                 downloadFromDatabase();
+                downloadFromCompetitionDatabase();
             }
             //Load the database that was downloaded from the network.
             string parent = System.IO.Directory.GetParent("..").FullName;
             string dir = parent +"/gokResources/gamedatax.gok";
+            string dirgame = parent + "/gokResources/gamedataxcomp.gok";
             LoadDatabase(dir);
+            LoadCompetitionDatabase(dirgame);
             ///
             ///Check for userdata before and load it.
             if (canProceed)
@@ -137,7 +141,7 @@ namespace GokkersApp
             serializer.Serialize(save, dt);
             //We simply save the datatable as a json file and we're good to go.
             save.Close();
-            MessageBox.Show("Database is succesvol vernieuwed");
+            MessageBox.Show("Wedstrijd Database is succesvol vernieuwed");
 
         }
         void saveGame(string UserSave)
@@ -240,6 +244,45 @@ namespace GokkersApp
                  
             playerListView.Refresh();
         }
+        void LoadCompetitionDatabase(string dbName)
+        {
+            //Basically copies the entire database from the file and fills the class with its contents.
+            rootObject = new RootObject();
+            StreamReader sr = File.OpenText(dbName);
+
+            JsonSerializer serializer = new JsonSerializer();
+
+            Game[] temp = JsonConvert.DeserializeObject<Game[]>(File.ReadAllText(dbName));
+            //MessageBox.Show(temp[0].player_name.ToString());
+            List<Game> games = temp.ToList<Game>();
+            gameGridView.Rows.Clear();
+            for (int i=0; i< games.Count; i++)
+            {
+                
+                if(games[i].team1_win == "0")
+                {
+                    gameGridView.Rows.Add(games[i].team1, games[i].team2, "Team2 Won");
+                }
+                else
+                {
+                    if (games[i].team1_win == "")
+                    {
+                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "Draw");
+                    }
+                    else
+                    {
+                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "Team1 Won");
+                    }
+                }
+               
+
+            }
+            gameGridView.Sort(gameGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+           
+            sr.Close();
+
+     
+        }
         //This RNG betting function may or may not be removed so it's contents aren't important at the moment.
         void PerformRNG()
         {
@@ -296,9 +339,15 @@ namespace GokkersApp
             establishConnection();
             if (connected)
             {
+                
                 downloadFromDatabase();
+                downloadFromCompetitionDatabase();
             }
-            LoadDatabase("gamedatax.gok");
+            string parent = System.IO.Directory.GetParent("..").FullName;
+            string dir = parent + "/gokResources/gamedatax.gok";
+            string dirgame = parent + "/gokResources/gamedataxcomp.gok";
+            LoadDatabase(dir);
+            LoadCompetitionDatabase(dirgame);
         }
 
         private void changeUserButton_Click(object sender, EventArgs e)
