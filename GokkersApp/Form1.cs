@@ -39,8 +39,8 @@ namespace GokkersApp
             establishConnection();
             if (connected)
             {
-                downloadFromDatabase();
-                downloadFromCompetitionDatabase();
+                downloadFromDatabase(); //Download ze teams.
+                downloadFromCompetitionDatabase(); //Download ze games.
             }
             //Load the database that was downloaded from the network.
             string parent = System.IO.Directory.GetParent("..").FullName;
@@ -215,11 +215,12 @@ namespace GokkersApp
         void LoadDatabase(string dbName)
         {
             //Basically copies the entire database from the file and fills the class with its contents.
-            rootObject = new RootObject();
-            StreamReader sr = File.OpenText(dbName);
+            
+          
             
             JsonSerializer serializer = new JsonSerializer();
-
+            /*Datum class is actually just used as an IO front for the actual TeamsBase Class for the JSON 
+             * Deserialization event...*/
             Datum[] temp = JsonConvert.DeserializeObject<Datum[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
             List<Datum> teams = temp.ToList<Datum>();
@@ -230,7 +231,7 @@ namespace GokkersApp
             //Fill tables with the loaded database.
             for (int i = 0; i < teams.Count; i++)
             {
-
+                /*THIS WAS DONE BECAUSE ID IS AN STRING AND IT NEEDS TO TURN INTO AN INT.*/
                 int x = Int32.Parse(teams[i].id.ToString());
                 
                 TeamsBase.Add(new TeamBase(teams[i].team_name, x, teams[i].team_name));
@@ -245,15 +246,15 @@ namespace GokkersApp
                 }
 
             }
-            sr.Close();
+           
                  
             playerListView.Refresh();
         }
         void LoadCompetitionDatabase(string dbName)
         {
             //Basically copies the entire database from the file and fills the class with its contents.
-            rootObject = new RootObject();
-            StreamReader sr = File.OpenText(dbName);
+            
+            
 
             JsonSerializer serializer = new JsonSerializer();
 
@@ -272,7 +273,7 @@ namespace GokkersApp
                 {
                     if (games[i].team1_win == "")
                     {
-                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "Draw");
+                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "N.V.T");
                     }
                     else
                     {
@@ -284,7 +285,7 @@ namespace GokkersApp
             }
             gameGridView.Sort(gameGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
            
-            sr.Close();
+           
 
      
         }

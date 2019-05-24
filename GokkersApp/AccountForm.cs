@@ -30,7 +30,7 @@ namespace GokkersApp
             {
                 try
                 {
-                    testConnection.svLogin("localhost", "f9", "root", "", "3306", "none");
+                   // testConnection.svLogin("localhost", "f9", "root", "", "3306", "none");
                     testConnection.connection.Open();
                     MessageBox.Show("Connection to " + "database" + " succesful");
                     //connectionStateLabel.Text = "Connected : " + testConnection.serverName;
@@ -44,7 +44,7 @@ namespace GokkersApp
             }
             else
             {
-                testConnection.svLogin("localhost", "f9", "root", "", "3306", "none");
+               // testConnection.svLogin("localhost", "f9", "root", "", "3306", "none");
                 try
                 {
                    
