@@ -33,6 +33,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.playerListView = new System.Windows.Forms.ListView();
+            this.gameGridView = new System.Windows.Forms.DataGridView();
+            this.team1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.team2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Resultaat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pointUpDown = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,22 +47,15 @@
             this.betButton = new System.Windows.Forms.Button();
             this.lossLabel = new System.Windows.Forms.Label();
             this.winsLabel = new System.Windows.Forms.Label();
-            this.playerListView = new System.Windows.Forms.ListView();
             this.pointLabel = new System.Windows.Forms.Label();
             this.refreshConnectionButton = new System.Windows.Forms.Button();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.changeUserButton = new System.Windows.Forms.Button();
-            this.gameGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.team1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.team2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Resultaat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pointUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,6 +90,65 @@
             this.groupBox1.Controls.Add(this.winsLabel);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.BackColor = System.Drawing.Color.Black;
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.playerListView);
+            this.groupBox2.Controls.Add(this.gameGridView);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Name = "label6";
+            // 
+            // playerListView
+            // 
+            resources.ApplyResources(this.playerListView, "playerListView");
+            this.playerListView.AutoArrange = false;
+            this.playerListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerListView.Name = "playerListView";
+            this.playerListView.UseCompatibleStateImageBehavior = false;
+            this.playerListView.View = System.Windows.Forms.View.List;
+            // 
+            // gameGridView
+            // 
+            this.gameGridView.AllowUserToAddRows = false;
+            this.gameGridView.AllowUserToDeleteRows = false;
+            resources.ApplyResources(this.gameGridView, "gameGridView");
+            this.gameGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gameGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.team1,
+            this.team2,
+            this.Resultaat});
+            this.gameGridView.Name = "gameGridView";
+            this.gameGridView.ReadOnly = true;
+            // 
+            // team1
+            // 
+            this.team1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.team1, "team1");
+            this.team1.Name = "team1";
+            this.team1.ReadOnly = true;
+            // 
+            // team2
+            // 
+            this.team2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.team2, "team2");
+            this.team2.Name = "team2";
+            this.team2.ReadOnly = true;
+            // 
+            // Resultaat
+            // 
+            resources.ApplyResources(this.Resultaat, "Resultaat");
+            this.Resultaat.Name = "Resultaat";
+            this.Resultaat.ReadOnly = true;
             // 
             // pointUpDown
             // 
@@ -131,15 +190,6 @@
             resources.ApplyResources(this.winsLabel, "winsLabel");
             this.winsLabel.Name = "winsLabel";
             // 
-            // playerListView
-            // 
-            resources.ApplyResources(this.playerListView, "playerListView");
-            this.playerListView.AutoArrange = false;
-            this.playerListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.playerListView.Name = "playerListView";
-            this.playerListView.UseCompatibleStateImageBehavior = false;
-            this.playerListView.View = System.Windows.Forms.View.List;
-            // 
             // pointLabel
             // 
             resources.ApplyResources(this.pointLabel, "pointLabel");
@@ -175,56 +225,6 @@
             this.changeUserButton.UseVisualStyleBackColor = true;
             this.changeUserButton.Click += new System.EventHandler(this.changeUserButton_Click);
             // 
-            // gameGridView
-            // 
-            this.gameGridView.AllowUserToAddRows = false;
-            this.gameGridView.AllowUserToDeleteRows = false;
-            resources.ApplyResources(this.gameGridView, "gameGridView");
-            this.gameGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gameGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.team1,
-            this.team2,
-            this.Resultaat});
-            this.gameGridView.Name = "gameGridView";
-            this.gameGridView.ReadOnly = true;
-            // 
-            // groupBox2
-            // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.BackColor = System.Drawing.Color.Black;
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.playerListView);
-            this.groupBox2.Controls.Add(this.gameGridView);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Name = "label6";
-            // 
-            // team1
-            // 
-            this.team1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            resources.ApplyResources(this.team1, "team1");
-            this.team1.Name = "team1";
-            this.team1.ReadOnly = true;
-            // 
-            // team2
-            // 
-            this.team2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            resources.ApplyResources(this.team2, "team2");
-            this.team2.Name = "team2";
-            this.team2.ReadOnly = true;
-            // 
-            // Resultaat
-            // 
-            resources.ApplyResources(this.Resultaat, "Resultaat");
-            this.Resultaat.Name = "Resultaat";
-            this.Resultaat.ReadOnly = true;
-            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -242,10 +242,10 @@
             this.Name = "mainForm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pointUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }

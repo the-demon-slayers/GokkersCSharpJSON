@@ -197,10 +197,18 @@ namespace GokkersApp
 
 
                 JsonSerializer serializer = new JsonSerializer();
-                saveData = (SaveData)serializer.Deserialize(sr, typeof(SaveData));
-                wins = saveData.wins;
-                losses = saveData.losses;
-                points = saveData.points;
+                try
+                {
+                    saveData = (SaveData)serializer.Deserialize(sr, typeof(SaveData));
+                    wins = saveData.wins;
+                    losses = saveData.losses;
+                    points = saveData.points;
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Gebruikerdata is onlessbar, data wordt verandert");
+                    setDefaults();
+                }
                 
                 sr.Close();
             }

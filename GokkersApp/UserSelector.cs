@@ -22,17 +22,12 @@ namespace GokkersApp
         void LoadUsers()
         {
 
-            //rootObject = new RootObject();
-
-            //StreamReader sr = File.dir
             string parent = System.IO.Directory.GetParent("..").FullName;
             string[] files = Directory.GetFiles(parent +"/gokResources/savedata", "*.gok",SearchOption.TopDirectoryOnly);
             
             for (int i = 0; i < files.Length; i++)
             {
                 userComboBox.Items.Add(Path.GetFileNameWithoutExtension(files[i]));
-                
-              
 
 
             }

@@ -238,7 +238,7 @@
     <value>424, 9</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>153, 28</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -262,7 +262,7 @@
     <value>Top, Bottom, Left</value>
   </data>
   <data name="playerListView.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial Rounded MT Bold, 20.25pt</value>
+    <value>Arial Rounded MT Bold, 16.2pt</value>
   </data>
   <data name="playerListView.LabelWrap" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -271,7 +271,7 @@
     <value>7, 6</value>
   </data>
   <data name="playerListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>411, 303</value>
+    <value>411, 276</value>
   </data>
   <data name="playerListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -288,32 +288,23 @@
   <data name="&gt;&gt;playerListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="team1.HeaderText" xml:space="preserve">
-    <value>Team Een</value>
-  </data>
   <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="team2.HeaderText" xml:space="preserve">
-    <value>Team Twee</value>
-  </data>
   <metadata name="Resultaat.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="Resultaat.HeaderText" xml:space="preserve">
-    <value>result</value>
+  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="gameGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 34</value>
+    <value>424, 40</value>
   </data>
   <data name="gameGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 275</value>
+    <value>438, 242</value>
   </data>
   <data name="gameGridView.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -331,10 +322,10 @@
     <value>2</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 59</value>
+    <value>10, 77</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 315</value>
+    <value>868, 288</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -361,10 +352,10 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="pointUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>522, 27</value>
+    <value>521, 23</value>
   </data>
   <data name="pointUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 26</value>
+    <value>120, 30</value>
   </data>
   <data name="pointUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -394,10 +385,10 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>444, 29</value>
+    <value>443, 25</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 20</value>
+    <value>90, 25</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -427,10 +418,10 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 29</value>
+    <value>12, 25</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>74, 25</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -454,10 +445,10 @@
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="teamPickerComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 24</value>
+    <value>92, 20</value>
   </data>
   <data name="teamPickerComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>345, 28</value>
+    <value>345, 33</value>
   </data>
   <data name="teamPickerComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -481,7 +472,7 @@
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="betButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>675, 19</value>
+    <value>669, 17</value>
   </data>
   <data name="betButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 40</value>
@@ -517,10 +508,10 @@
     <value>NoControl</value>
   </data>
   <data name="lossLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 377</value>
+    <value>599, 368</value>
   </data>
   <data name="lossLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 20</value>
+    <value>86, 25</value>
   </data>
   <data name="lossLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -550,10 +541,10 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="winsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 377</value>
+    <value>6, 368</value>
   </data>
   <data name="winsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+    <value>73, 25</value>
   </data>
   <data name="winsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -574,10 +565,10 @@
     <value>7</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 72</value>
+    <value>12, 81</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 421</value>
+    <value>884, 412</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -594,11 +585,29 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="team1.HeaderText" xml:space="preserve">
+    <value>Team Een</value>
+  </data>
+  <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="team2.HeaderText" xml:space="preserve">
+    <value>Team Twee</value>
+  </data>
+  <metadata name="Resultaat.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Resultaat.HeaderText" xml:space="preserve">
+    <value>result</value>
+  </data>
   <data name="pointLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="pointLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial Rounded MT Bold, 19.8000011pt</value>
+    <value>Arial Rounded MT Bold, 13.8pt</value>
   </data>
   <data name="pointLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -616,7 +625,7 @@
     <value>Punten : 5</value>
   </data>
   <data name="pointLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;pointLabel.Name" xml:space="preserve">
     <value>pointLabel</value>
