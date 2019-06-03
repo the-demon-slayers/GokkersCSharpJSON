@@ -25,7 +25,8 @@ namespace GokkersApp
         public List<TeamBase> TeamsBase= new List<TeamBase>();
         public DataGridView gridView;
         public List<string> Teams = new List<string>();
-
+        List<Game> games = new List<Game>();
+        public int selectedGameIndex;
         public int wins, losses, points;
         public bool connected = false;
         public bool canProceed = false;
@@ -232,8 +233,8 @@ namespace GokkersApp
             Datum[] temp = JsonConvert.DeserializeObject<Datum[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
             List<Datum> teams = temp.ToList<Datum>();
-            playerListView.Clear();
-            teamPickerComboBox.Items.Clear();
+            
+           
             TeamsBase.Clear();
             Teams.Clear();
             //Fill tables with the loaded database.
@@ -247,16 +248,12 @@ namespace GokkersApp
                 
                 Teams.Add(TeamsBase[i].team_name);
                
-                if (!teamPickerComboBox.Items.Contains(TeamsBase[i].team_name))
-                {
-                    teamPickerComboBox.Items.Add(Teams[i].ToString());
-                    playerListView.Items.Add(Teams[i].ToString());
-                }
+               
 
             }
            
                  
-            playerListView.Refresh();
+        
         }
         void LoadCompetitionDatabase(string dbName)
         {
@@ -268,30 +265,13 @@ namespace GokkersApp
 
             Game[] temp = JsonConvert.DeserializeObject<Game[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
-            List<Game> games = temp.ToList<Game>();
+            games = temp.ToList<Game>();
             gameGridView.Rows.Clear();
             for (int i=0; i< games.Count; i++)
             {
-                
-                if(games[i].team1_win == "0")
-                {
-                    gameGridView.Rows.Add(games[i].team1, games[i].team2, "Team2 Won");
-                }
-                else
-                {
-                    if (games[i].team1_win == "")
-                    {
-                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "N.V.T");
-                    }
-                    else
-                    {
-                        gameGridView.Rows.Add(games[i].team1, games[i].team2, "Team1 Won");
-                    }
-                }
-               
-
+             gameGridView.Rows.Add(games[i].team1, games[i].team2);
             }
-            gameGridView.Sort(gameGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            //gameGridView.Sort(gameGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
            
            
 
@@ -303,7 +283,7 @@ namespace GokkersApp
             int x = 0;
             Random rng = new Random();
             x = (int)pointUpDown.Value;
-            if (teamPickerComboBox.SelectedItem == null)
+            if (gameGridView.SelectedCells == null)
             {
                 MessageBox.Show("Alstublieft selecteer een Team");
             }
@@ -321,15 +301,13 @@ namespace GokkersApp
                         if (rng.Next(2) == 0)
                         {
                             wins++;
-                            MessageBox.Show("Uw Team : " + teamPickerComboBox.SelectedItem.ToString() + " heeft gewonnen!");
-                            RefreshTitleBar(teamPickerComboBox.SelectedItem.ToString() + " heeft gewonnen!!! HORAAH!");
+                
                             points = points + (x * 2);
                         }
                         else
                         {
                             losses++;
-                            MessageBox.Show("Uw Team : " + teamPickerComboBox.SelectedItem.ToString() + " verloor de wedstrijd!");
-                            RefreshTitleBar(teamPickerComboBox.SelectedItem.ToString() + " verloor de wedstrijd!!! OH NEE!");
+                         
                             
                         }
                         saveGame(userNameLabel.Text);
@@ -381,6 +359,23 @@ namespace GokkersApp
             }
         }
 
+        private void gameGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void gameGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i<games.Count; i++)
+            {
+                if(i == e.RowIndex)
+                {
+                    gameVersusLabel.Text = "U gok op wedstrijd van : " +  games[i].team1 + " Tegen " +  games[i].team2;
+                    selectedGameIndex = i;
+                }
+            }
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -388,12 +383,92 @@ namespace GokkersApp
 
         private void betButton_Click(object sender, EventArgs e)
         {
+           
             if(cheat)
             {
-                points += 64;
+                points += 164;
                 cheat = false;
             }
-            PerformRNG();
+            if (pointUpDown.Value > 1 && pointUpDown.Value < 16)
+            {
+                PointBetWindow pointBetWindow;
+                pointBetWindow = new PointBetWindow();
+                for (int i = 0; i < games.Count; i++)
+                {
+                    if (selectedGameIndex == i)
+                    {
+                        pointBetWindow.team1name = games[i].team1;
+                        pointBetWindow.team2name = games[i].team2;
+                        pointBetWindow.RefreshText();
+                    }
+                }
+                pointBetWindow.ShowDialog();
+                if (pointBetWindow.DialogResult != DialogResult.OK)
+                {
+                    int x;
+                    int.TryParse(games[selectedGameIndex].team1_points, out x);
+                    int y;
+                    int.TryParse(games[selectedGameIndex].team2_points, out y);
+
+                    if (x > y)
+                    {
+                        if (pointBetWindow.selectedTeamSide == 0)
+                        {
+                            MessageBox.Show("Uw team : " + games[selectedGameIndex].team1 + " heeft gewonnen");
+                            checkPointValidation(true);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Uw team : " + games[selectedGameIndex].team1 + " verloor de wedstrijd");
+                            checkPointValidation(false);
+                        }
+                    }
+                    if (x < y)
+                    {
+                        if (pointBetWindow.selectedTeamSide == 1)
+                        {
+                            MessageBox.Show("Uw team : " + games[selectedGameIndex].team2 + " heeft gewonnen");
+                            checkPointValidation(true);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Uw team : " + games[selectedGameIndex].team2 + " verloor de wedstrijd");
+                            checkPointValidation(false);
+                        }
+                    }
+                    if (x == y)
+                    {
+                        MessageBox.Show("De speel is gelijk.");
+                    }
+                    void checkPointValidation(bool win)
+                    {
+                        if (win)
+                        {
+                            if (x == pointBetWindow.team1points && y == pointBetWindow.team2points)
+                            {
+                                MessageBox.Show("Uw heeft de juiste uitkomst gedacht! Trippel punten!!!");
+                                points += (int)pointUpDown.Value * 3;
+                            }
+                            else
+                            {
+                                points += (int)pointUpDown.Value * 2;
+                            }
+                            wins++;
+                        }
+                        else
+                        {
+                            points -= (int)pointUpDown.Value;
+                            losses++;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Je mag niet hooger dan 15 of minder dan 2 punten gokken.");
+            }
+
+            // PerformRNG();
             updateWinLabels();
         }
     }

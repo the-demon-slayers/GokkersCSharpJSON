@@ -129,7 +129,7 @@
     <value>-2, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 54</value>
+    <value>675, 54</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
@@ -163,7 +163,7 @@
     <value>13, 54</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 24</value>
+    <value>1308, 24</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -199,7 +199,7 @@
     <value>12, 496</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 28</value>
+    <value>1308, 28</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -234,8 +234,11 @@
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial Rounded MT Bold, 14.25pt</value>
   </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 9</value>
+    <value>6, 9</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 28</value>
@@ -258,53 +261,26 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="playerListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="playerListView.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial Rounded MT Bold, 16.2pt</value>
-  </data>
-  <data name="playerListView.LabelWrap" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="playerListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 6</value>
-  </data>
-  <data name="playerListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>411, 276</value>
-  </data>
-  <data name="playerListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;playerListView.Name" xml:space="preserve">
-    <value>playerListView</value>
-  </data>
-  <data name="&gt;&gt;playerListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;playerListView.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;playerListView.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="team1.HeaderText" xml:space="preserve">
+    <value>Team Een</value>
+  </data>
   <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Resultaat.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="team2.HeaderText" xml:space="preserve">
+    <value>Team Twee</value>
   </data>
   <data name="gameGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 40</value>
+    <value>7, 40</value>
   </data>
   <data name="gameGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 242</value>
+    <value>1279, 242</value>
   </data>
   <data name="gameGridView.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -319,13 +295,13 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;gameGridView.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 77</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 288</value>
+    <value>1292, 288</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -352,7 +328,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="pointUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>521, 23</value>
+    <value>1071, 25</value>
   </data>
   <data name="pointUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 30</value>
@@ -385,7 +361,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 25</value>
+    <value>975, 27</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 25</value>
@@ -408,62 +384,38 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+  <data name="gameVersusLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="gameVersusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="gameVersusLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 25</value>
+  <data name="gameVersusLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 30</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 25</value>
+  <data name="gameVersusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 25</value>
   </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+  <data name="gameVersusLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Team :</value>
+  <data name="gameVersusLabel.Text" xml:space="preserve">
+    <value>Team 1 vs Team 2 </value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
+  <data name="&gt;&gt;gameVersusLabel.Name" xml:space="preserve">
+    <value>gameVersusLabel</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+  <data name="&gt;&gt;gameVersusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gameVersusLabel.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gameVersusLabel.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="teamPickerComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
-  </data>
-  <data name="teamPickerComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 20</value>
-  </data>
-  <data name="teamPickerComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>345, 33</value>
-  </data>
-  <data name="teamPickerComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;teamPickerComboBox.Name" xml:space="preserve">
-    <value>teamPickerComboBox</value>
-  </data>
-  <data name="&gt;&gt;teamPickerComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;teamPickerComboBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;teamPickerComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="betButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -472,10 +424,10 @@
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="betButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>669, 17</value>
+    <value>1197, 17</value>
   </data>
   <data name="betButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 40</value>
+    <value>99, 40</value>
   </data>
   <data name="betButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -493,7 +445,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;betButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="lossLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -508,7 +460,7 @@
     <value>NoControl</value>
   </data>
   <data name="lossLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 368</value>
+    <value>1023, 368</value>
   </data>
   <data name="lossLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 25</value>
@@ -529,7 +481,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lossLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="winsLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -562,13 +514,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;winsLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 81</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 412</value>
+    <value>1308, 412</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -585,24 +537,6 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="team1.HeaderText" xml:space="preserve">
-    <value>Team Een</value>
-  </data>
-  <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="team2.HeaderText" xml:space="preserve">
-    <value>Team Twee</value>
-  </data>
-  <metadata name="Resultaat.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="Resultaat.HeaderText" xml:space="preserve">
-    <value>result</value>
-  </data>
   <data name="pointLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -613,7 +547,7 @@
     <value>NoControl</value>
   </data>
   <data name="pointLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>668, 0</value>
+    <value>1092, 0</value>
   </data>
   <data name="pointLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 54</value>
@@ -646,7 +580,7 @@
     <value>NoControl</value>
   </data>
   <data name="refreshConnectionButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 12</value>
+    <value>900, 12</value>
   </data>
   <data name="refreshConnectionButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 30</value>
@@ -715,7 +649,7 @@
     <value>-4, 0</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>915, 54</value>
+    <value>1339, 54</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -742,7 +676,7 @@
     <value>NoControl</value>
   </data>
   <data name="changeUserButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 12</value>
+    <value>996, 12</value>
   </data>
   <data name="changeUserButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 30</value>
@@ -769,7 +703,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>908, 529</value>
+    <value>1332, 529</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -787,12 +721,6 @@
     <value>team2</value>
   </data>
   <data name="&gt;&gt;team2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Resultaat.Name" xml:space="preserve">
-    <value>Resultaat</value>
-  </data>
-  <data name="&gt;&gt;Resultaat.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
