@@ -55,11 +55,15 @@ namespace GokkersApp
 
         private void makeNewUserButton_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(newUserTextBox.Text))
+            if(string.IsNullOrEmpty(newUserTextBox.Text) || string.IsNullOrWhiteSpace(newUserTextBox.Text))
             {
                 if(newUserTextBox.Text.Contains(".") || newUserTextBox.Text.Contains("[") || newUserTextBox.Text.Contains("]") || newUserTextBox.Text.Contains("/") || newUserTextBox.Text.Contains("\""))
                 {
                     MessageBox.Show("A.U.B typ niks verkeerd.");
+                }
+                else
+                {
+                    MessageBox.Show("Schrijf een nieuwe gebruikernaam.");
                 }
             }
             else

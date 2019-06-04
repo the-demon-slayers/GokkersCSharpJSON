@@ -115,7 +115,7 @@
             this.gameGridView.Name = "gameGridView";
             this.gameGridView.ReadOnly = true;
             this.gameGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gameGridView_CellClick);
-            this.gameGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gameGridView_CellContentClick);
+         
             // 
             // pointUpDown
             // 

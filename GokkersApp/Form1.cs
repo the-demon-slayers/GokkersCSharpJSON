@@ -33,6 +33,7 @@ namespace GokkersApp
         public bool cheat = false;
         SaveData saveData = new SaveData();
         ServerConnection serverConnection;
+
         public mainForm()
         {
             InitializeComponent();
@@ -57,6 +58,7 @@ namespace GokkersApp
             }
             else
             {
+                //Opens the user data...
                 OpenUserData();
              
             }
@@ -68,6 +70,7 @@ namespace GokkersApp
 
         void OpenUserData()
         {
+            //Pulls up user data selection screen
             UserSelector userSelector = new UserSelector();
             userSelector.ShowDialog();
             if(userSelector.DialogResult != DialogResult.OK)
@@ -278,6 +281,7 @@ namespace GokkersApp
      
         }
         //This RNG betting function may or may not be removed so it's contents aren't important at the moment.
+        /*
         void PerformRNG()
         {
             int x = 0;
@@ -319,6 +323,7 @@ namespace GokkersApp
                 }
             }
         }
+        */
         void updateWinLabels()
         {
             winsLabel.Text = "Wins : " + wins.ToString();
@@ -359,18 +364,13 @@ namespace GokkersApp
             }
         }
 
-        private void gameGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void gameGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             for (int i = 0; i<games.Count; i++)
             {
                 if(i == e.RowIndex)
                 {
-                    gameVersusLabel.Text = "U gok op wedstrijd van : " +  games[i].team1 + " Tegen " +  games[i].team2;
+                    gameVersusLabel.Text = "U gok op wedstrijd van : " +  games[i].team1 + " Vs. " +  games[i].team2;
                     selectedGameIndex = i;
                 }
             }
@@ -439,6 +439,7 @@ namespace GokkersApp
                     if (x == y)
                     {
                         MessageBox.Show("De speel is gelijk.");
+                        saveGame(userNameLabel.Text);
                     }
                     void checkPointValidation(bool win)
                     {
@@ -454,11 +455,13 @@ namespace GokkersApp
                                 points += (int)pointUpDown.Value * 2;
                             }
                             wins++;
+                            saveGame(userNameLabel.Text);
                         }
                         else
                         {
                             points -= (int)pointUpDown.Value;
                             losses++;
+                            saveGame(userNameLabel.Text);
                         }
                     }
                 }
@@ -467,8 +470,6 @@ namespace GokkersApp
             {
                 MessageBox.Show("Je mag niet hooger dan 15 of minder dan 2 punten gokken.");
             }
-
-            // PerformRNG();
             updateWinLabels();
         }
     }
