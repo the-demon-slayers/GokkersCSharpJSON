@@ -261,20 +261,14 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="team1.HeaderText" xml:space="preserve">
-    <value>Team Een</value>
-  </data>
   <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="team2.HeaderText" xml:space="preserve">
-    <value>Team Twee</value>
+  <data name="gameGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="gameGridView.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 40</value>
@@ -305,9 +299,6 @@
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -698,6 +689,18 @@
   </data>
   <data name="&gt;&gt;changeUserButton.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <metadata name="team1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="team1.HeaderText" xml:space="preserve">
+    <value>Team Een</value>
+  </data>
+  <metadata name="team2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="team2.HeaderText" xml:space="preserve">
+    <value>Team Twee</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

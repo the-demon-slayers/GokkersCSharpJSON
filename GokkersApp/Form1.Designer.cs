@@ -107,15 +107,20 @@
             // 
             this.gameGridView.AllowUserToAddRows = false;
             this.gameGridView.AllowUserToDeleteRows = false;
+            this.gameGridView.AllowUserToResizeColumns = false;
+            this.gameGridView.AllowUserToResizeRows = false;
             resources.ApplyResources(this.gameGridView, "gameGridView");
+            this.gameGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gameGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.gameGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gameGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.team1,
             this.team2});
             this.gameGridView.Name = "gameGridView";
             this.gameGridView.ReadOnly = true;
+            this.gameGridView.RowHeadersVisible = false;
+            this.gameGridView.ShowEditingIcon = false;
             this.gameGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gameGridView_CellClick);
-         
             // 
             // pointUpDown
             // 
@@ -191,6 +196,7 @@
             resources.ApplyResources(this.team1, "team1");
             this.team1.Name = "team1";
             this.team1.ReadOnly = true;
+            this.team1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // team2
             // 
@@ -198,6 +204,7 @@
             resources.ApplyResources(this.team2, "team2");
             this.team2.Name = "team2";
             this.team2.ReadOnly = true;
+            this.team2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // mainForm
             // 
