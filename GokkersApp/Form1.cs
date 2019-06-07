@@ -363,17 +363,20 @@ namespace GokkersApp
                 cheat = false;
             }
         }
-
-        private void gameGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        void GetCompetitionSelection(DataGridViewCellEventArgs e)
         {
-            for (int i = 0; i<games.Count; i++)
+            for (int i = 0; i < games.Count; i++)
             {
-                if(i == e.RowIndex)
+                if (i == e.RowIndex)
                 {
-                    gameVersusLabel.Text = "U gok op wedstrijd van : " +  games[i].team1 + " Vs. " +  games[i].team2;
+                    gameVersusLabel.Text = "U gok op wedstrijd van : " + games[i].team1 + " Vs. " + games[i].team2;
                     selectedGameIndex = i;
                 }
             }
+        }
+        private void gameGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            GetCompetitionSelection(e);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -383,12 +386,17 @@ namespace GokkersApp
 
         private void betButton_Click(object sender, EventArgs e)
         {
-           
             if(cheat)
             {
                 points += 164;
                 cheat = false;
             }
+            HandleBets(e);
+            updateWinLabels();
+        }
+
+        void HandleBets(EventArgs e)
+        {
             if (pointUpDown.Value > 1 && pointUpDown.Value < 16)
             {
                 PointBetWindow pointBetWindow;
@@ -470,7 +478,6 @@ namespace GokkersApp
             {
                 MessageBox.Show("Je mag niet hooger dan 15 of minder dan 2 punten gokken.");
             }
-            updateWinLabels();
         }
     }
 }
