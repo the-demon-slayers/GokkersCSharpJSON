@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using MySql.Data.MySqlClient;
-
+using System.Web;
+using System.Net;
 /* Gokkers C# App bij TheDemonSlayers
  * 
  * 
@@ -38,7 +39,8 @@ namespace GokkersApp
         {
             InitializeComponent();
             //Connect to the network...
-            establishConnection();
+            // establishConnection();
+            connected = true;
             if (connected)
             {
                 downloadFromDatabase(); //Download ze teams.
@@ -113,19 +115,27 @@ namespace GokkersApp
         //Download the teams database to a json file.
         void downloadFromDatabase()
         {
+            /*
             //Select the teams database
             string commandString = "SELECT * FROM teams";
             MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
+            */
             DataTable dt = new DataTable();
-            sda.Fill(dt);
+            
             //SDA takes data from the selected database and fills up our datatable with information.
             string parent = System.IO.Directory.GetParent("..").FullName;
-            StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
+           // StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
+           
+            
 
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Serialize(save, dt);
-            //We simply save the datatable as a json file and we're good to go.
-            save.Close();
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://thedemonslayersradiuscollege.nl/ProjectFIFA-PHP-/dbdl.php");
+            
+                File.WriteAllText(parent + "/gokResources/gamedatax.gok", json);
+            }
+     
+            
             MessageBox.Show("Database is succesvol vernieuwed");
 
         }
@@ -133,18 +143,19 @@ namespace GokkersApp
         void downloadFromCompetitionDatabase()
         {
             //Select the teams database
-            string commandString = "SELECT * FROM games";
-            MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            //SDA takes data from the selected database and fills up our datatable with information.
+           
             string parent = System.IO.Directory.GetParent("..").FullName;
-            StreamWriter save = File.CreateText(parent + "/gokResources/gamedataxcomp.gok");
+        
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://thedemonslayersradiuscollege.nl/ProjectFIFA-PHP-/dbdlx.php");
+                
+                File.WriteAllText(parent + "/gokResources/gamedataxcomp.gok", json);
+            }
 
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Serialize(save, dt);
-            //We simply save the datatable as a json file and we're good to go.
-            save.Close();
+            
+            
+       
             MessageBox.Show("Wedstrijd Database is succesvol vernieuwed");
 
         }
@@ -247,8 +258,6 @@ namespace GokkersApp
                 int x = Int32.Parse(teams[i].id.ToString());
                 
                 TeamsBase.Add(new TeamBase(teams[i].team_name, x, teams[i].team_name));
-                
-                
                 Teams.Add(TeamsBase[i].team_name);
                
                
@@ -262,9 +271,6 @@ namespace GokkersApp
         {
             //Basically copies the entire database from the file and fills the class with its contents.
             
-            
-
-            JsonSerializer serializer = new JsonSerializer();
 
             Game[] temp = JsonConvert.DeserializeObject<Game[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
