@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
-using MySql.Data.MySqlClient;
+
 using System.Web;
 using System.Net;
 /* Gokkers C# App bij TheDemonSlayers
@@ -33,7 +33,7 @@ namespace GokkersApp
         public bool canProceed = false;
         public bool cheat = false;
         SaveData saveData = new SaveData();
-        ServerConnection serverConnection;
+        ServerConnection serverConnection = new ServerConnection();
 
         public mainForm()
         {
@@ -50,6 +50,7 @@ namespace GokkersApp
             string parent = System.IO.Directory.GetParent("..").FullName;
             string dir = parent +"/gokResources/gamedatax.gok";
             string dirgame = parent + "/gokResources/gamedataxcomp.gok";
+            
             LoadDatabase(dir);
             LoadCompetitionDatabase(dirgame);
             ///
@@ -93,51 +94,26 @@ namespace GokkersApp
             this.Text = newText;
         }
 
-        void establishConnection ()
-        {
-            serverConnection = new ServerConnection();
-            try
-            {
-                //Get the decrypted string and then log in to the database.
-                serverConnection.svLoginEncrypted();
-                serverConnection.connection.Open();
-              
-                connected = true;
-               
-            }
-            catch (MySqlException err)
-            {
-                MessageBox.Show("Connection to" + " database" + " failed...");
-                connected = false;
-                
-            }
-        }
+
         //Download the teams database to a json file.
         void downloadFromDatabase()
         {
-            /*
-            //Select the teams database
-            string commandString = "SELECT * FROM teams";
-            MySqlDataAdapter sda = new MySqlDataAdapter(commandString, serverConnection.connection);
-            */
-            DataTable dt = new DataTable();
-            
-            //SDA takes data from the selected database and fills up our datatable with information.
-            string parent = System.IO.Directory.GetParent("..").FullName;
-           // StreamWriter save = File.CreateText(parent+"/gokResources/gamedatax.gok");
-           
-            
-
-            using (var webClient = new WebClient())
+            try
             {
-                var json = webClient.DownloadString("http://thedemonslayersradiuscollege.nl/ProjectFIFA-PHP-/dbdl.php");
-            
-                File.WriteAllText(parent + "/gokResources/gamedatax.gok", json);
-            }
-     
-            
-            MessageBox.Show("Database is succesvol vernieuwed");
+                string parent = System.IO.Directory.GetParent("..").FullName;
 
+                using (var webClient = new WebClient())
+                {
+                    var json = webClient.DownloadString(serverConnection.decryptCompString(File.ReadAllText(parent + "/gokResources/c.gok")));
+
+                    File.WriteAllText(parent + "/gokResources/gamedatax.gok", json);
+                }
+                MessageBox.Show("Database is succesvol vernieuwed");
+            }
+            catch(WebException e)
+            {
+                MessageBox.Show("Connection to database failed");
+            }
         }
         //Download the competitions database to a json file.
         void downloadFromCompetitionDatabase()
@@ -148,14 +124,11 @@ namespace GokkersApp
         
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://thedemonslayersradiuscollege.nl/ProjectFIFA-PHP-/dbdlx.php");
+                var json = webClient.DownloadString(serverConnection.decryptCompString(File.ReadAllText(parent + "/gokResources/cg.gok")));
                 
                 File.WriteAllText(parent + "/gokResources/gamedataxcomp.gok", json);
             }
 
-            
-            
-       
             MessageBox.Show("Wedstrijd Database is succesvol vernieuwed");
 
         }
@@ -286,50 +259,7 @@ namespace GokkersApp
 
      
         }
-        //This RNG betting function may or may not be removed so it's contents aren't important at the moment.
-        /*
-        void PerformRNG()
-        {
-            int x = 0;
-            Random rng = new Random();
-            x = (int)pointUpDown.Value;
-            if (gameGridView.SelectedCells == null)
-            {
-                MessageBox.Show("Alstublieft selecteer een Team");
-            }
-            else
-            {
-                if (pointUpDown.Value < 2 || pointUpDown.Value > 15)
-                {
-                    MessageBox.Show("Je moet niet minder dan 2 en niet hoger dan 15 punten gokken");
-                }
-                else
-                {
-                    if (points >= pointUpDown.Value)
-                    {
-                        points = points - (int)pointUpDown.Value;
-                        if (rng.Next(2) == 0)
-                        {
-                            wins++;
-                
-                            points = points + (x * 2);
-                        }
-                        else
-                        {
-                            losses++;
-                         
-                            
-                        }
-                        saveGame(userNameLabel.Text);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Je heeft te weing punten te gokken.");
-                    }
-                }
-            }
-        }
-        */
+      
         void updateWinLabels()
         {
             winsLabel.Text = "Wins : " + wins.ToString();
@@ -339,7 +269,7 @@ namespace GokkersApp
 
         private void refreshConnectionButton_Click(object sender, EventArgs e)
         {
-            establishConnection();
+           
             if (connected)
             {
                 
@@ -382,6 +312,7 @@ namespace GokkersApp
         }
         private void gameGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Lets us select the competitions to bet on.
             GetCompetitionSelection(e);
         }
 
