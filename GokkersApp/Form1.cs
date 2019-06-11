@@ -1,14 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json;
-
-using System.Web;
+using System.Linq;
 using System.Net;
+using System.Windows.Forms;
 /* Gokkers C# App bij TheDemonSlayers
  * 
  * 
@@ -20,10 +16,10 @@ namespace GokkersApp
 
     public partial class mainForm : Form
     {
-       
+
         RootObject rootObject;
         public List<Player> Players = new List<Player>();
-        public List<TeamBase> TeamsBase= new List<TeamBase>();
+        public List<TeamBase> TeamsBase = new List<TeamBase>();
         public DataGridView gridView;
         public List<string> Teams = new List<string>();
         List<Game> games = new List<Game>();
@@ -48,9 +44,9 @@ namespace GokkersApp
             }
             //Load the database that was downloaded from the network.
             string parent = System.IO.Directory.GetParent("..").FullName;
-            string dir = parent +"/gokResources/gamedatax.gok";
+            string dir = parent + "/gokResources/gamedatax.gok";
             string dirgame = parent + "/gokResources/gamedataxcomp.gok";
-            
+
             LoadDatabase(dir);
             LoadCompetitionDatabase(dirgame);
             ///
@@ -63,12 +59,12 @@ namespace GokkersApp
             {
                 //Opens the user data...
                 OpenUserData();
-             
+
             }
             ///
             ///Update labels.
             updateWinLabels();
-          
+
         }
 
         void OpenUserData()
@@ -76,7 +72,7 @@ namespace GokkersApp
             //Pulls up user data selection screen
             UserSelector userSelector = new UserSelector();
             userSelector.ShowDialog();
-            if(userSelector.DialogResult != DialogResult.OK)
+            if (userSelector.DialogResult != DialogResult.OK)
             {
                 canProceed = true;
                 userNameLabel.Text = userSelector.SelectedUser;
@@ -110,7 +106,7 @@ namespace GokkersApp
                 }
                 MessageBox.Show("Database is succesvol vernieuwed");
             }
-            catch(WebException e)
+            catch (WebException)
             {
                 MessageBox.Show("Connection to database failed");
             }
@@ -119,13 +115,13 @@ namespace GokkersApp
         void downloadFromCompetitionDatabase()
         {
             //Select the teams database
-           
+
             string parent = System.IO.Directory.GetParent("..").FullName;
-        
+
             using (var webClient = new WebClient())
             {
                 var json = webClient.DownloadString(serverConnection.decryptCompString(File.ReadAllText(parent + "/gokResources/cg.gok")));
-                
+
                 File.WriteAllText(parent + "/gokResources/gamedataxcomp.gok", json);
             }
 
@@ -140,7 +136,7 @@ namespace GokkersApp
             saveData.losses = losses;
             saveData.points = points;
             string parent = System.IO.Directory.GetParent("..").FullName;
-            StreamWriter save = File.CreateText(parent +"/gokResources/savedata/" +UserSave+".gok");
+            StreamWriter save = File.CreateText(parent + "/gokResources/savedata/" + UserSave + ".gok");
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(save, saveData);
             save.Close();
@@ -175,13 +171,13 @@ namespace GokkersApp
 
                     fileFound = false;
                 }
-                
+
             }
             //If the test file was found, then load the actual file. This is done to prevent exceptions.
-            if(fileFound)
+            if (fileFound)
             {
                 string parent = System.IO.Directory.GetParent("..").FullName;
-                StreamReader sr = File.OpenText(parent+"/gokResources/savedata/"+UserSave+".gok");
+                StreamReader sr = File.OpenText(parent + "/gokResources/savedata/" + UserSave + ".gok");
 
 
                 JsonSerializer serializer = new JsonSerializer();
@@ -192,36 +188,36 @@ namespace GokkersApp
                     losses = saveData.losses;
                     points = saveData.points;
                 }
-                catch (Exception err)
+                catch (Exception)
                 {
                     MessageBox.Show("Gebruikerdata is onlessbar, data wordt verandert");
                     setDefaults();
                 }
-                
+
                 sr.Close();
             }
             else
             {
                 //Set everything to a defualt value
                 setDefaults();
-               
+
             }
             updateWinLabels();
         }
         void LoadDatabase(string dbName)
         {
             //Basically copies the entire database from the file and fills the class with its contents.
-            
-          
-            
+
+
+
             JsonSerializer serializer = new JsonSerializer();
             /*Datum class is actually just used as an IO front for the actual TeamsBase Class for the JSON 
              * Deserialization event...*/
             Datum[] temp = JsonConvert.DeserializeObject<Datum[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
             List<Datum> teams = temp.ToList<Datum>();
-            
-           
+
+
             TeamsBase.Clear();
             Teams.Clear();
             //Fill tables with the loaded database.
@@ -229,50 +225,47 @@ namespace GokkersApp
             {
                 /*THIS WAS DONE BECAUSE ID IS AN STRING AND IT NEEDS TO TURN INTO AN INT.*/
                 int x = Int32.Parse(teams[i].id.ToString());
-                
+
                 TeamsBase.Add(new TeamBase(teams[i].team_name, x, teams[i].team_name));
                 Teams.Add(TeamsBase[i].team_name);
-               
-               
+
+
 
             }
-           
-                 
-        
+
+
+
         }
         void LoadCompetitionDatabase(string dbName)
         {
             //Basically copies the entire database from the file and fills the class with its contents.
-            
+
 
             Game[] temp = JsonConvert.DeserializeObject<Game[]>(File.ReadAllText(dbName));
             //MessageBox.Show(temp[0].player_name.ToString());
             games = temp.ToList<Game>();
             gameGridView.Rows.Clear();
-            for (int i=0; i< games.Count; i++)
+            for (int i = 0; i < games.Count; i++)
             {
-             gameGridView.Rows.Add(games[i].team1, games[i].team2);
+                gameGridView.Rows.Add(games[i].team1, games[i].team2);
             }
-            //gameGridView.Sort(gameGridView.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
-           
-           
 
-     
+
         }
-      
+
         void updateWinLabels()
         {
             winsLabel.Text = "Wins : " + wins.ToString();
             lossLabel.Text = "Losses : " + losses.ToString();
-            pointLabel.Text ="Punten : " + points.ToString();
+            pointLabel.Text = "Punten : " + points.ToString();
         }
 
         private void refreshConnectionButton_Click(object sender, EventArgs e)
         {
-           
+
             if (connected)
             {
-                
+
                 downloadFromDatabase();
                 downloadFromCompetitionDatabase();
             }
@@ -290,7 +283,7 @@ namespace GokkersApp
         //EXTREMELY BASIC CHEAT CODE...
         private void betButton_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.C)
+            if (e.KeyCode == Keys.C)
             {
                 cheat = true;
             }
@@ -323,7 +316,7 @@ namespace GokkersApp
 
         private void betButton_Click(object sender, EventArgs e)
         {
-            if(cheat)
+            if (cheat)
             {
                 points += 164;
                 cheat = false;
